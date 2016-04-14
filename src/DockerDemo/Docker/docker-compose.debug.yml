@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  dockerdemo:
+    build:
+      context: ..
+      dockerfile: Docker/Dockerfile.debug
+      args:
+      - CONTAINER_PORT=${DOCKERDEMO_PORT}
+      - SERVER_URLS=http://*:${DOCKERDEMO_PORT}
+    ports:
+    - "${HOST_PORT}:${DOCKERDEMO_PORT}"
+    volumes:
+    - ..:/app
